@@ -1,12 +1,12 @@
 extends Area2D
 
 #Cria variáveis
-@onready var sprite: AnimatedSprite2D = $Sprite2D
+@onready var sprite: AnimatedSprite2D = $Animação
 @export var velocidade_mira : float = 20.0
 var posicao_mira : Vector2 = Vector2.ZERO
-const AnimationOnClick = "click"
+const AnimationOnClick = "clica_mouse"
 
-#Implementa funções
+
 func _ready() -> void:
 	pass
 

@@ -1,7 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://bn7tgfuf5i7gn"]
+[gd_scene load_steps=4 format=3 uid="uid://bn7tgfuf5i7gn"]
 
 [ext_resource type="PackedScene" uid="uid://bnpg3aty5eme4" path="res://cenario.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://suq0m0rgwv3w" path="res://camera.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://ph4ffuidt15u" path="res://mira.tscn" id="3_1bvp3"]
 
 [node name="Level" type="Node"]
 
 [node name="Cenario" parent="." instance=ExtResource("1_ig7tw")]
+
+[node name="Camera2D" parent="." instance=ExtResource("2_h2yge")]
+position = Vector2(576, 324)
+
+[node name="Mira" parent="Camera2D" instance=ExtResource("3_1bvp3")]
+position = Vector2(-576, -324)

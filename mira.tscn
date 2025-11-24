@@ -31,10 +31,13 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7n58y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6226f")
 }],
-"loop": true,
-"name": &"Click mouse",
-"speed": 2.0
+"loop": false,
+"name": &"clica_mouse",
+"speed": 12.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_by6im"]
@@ -47,8 +50,9 @@ script = ExtResource("1_6226f")
 position = Vector2(-1, 0)
 scale = Vector2(0.17278616, 0.17278615)
 sprite_frames = SubResource("SpriteFrames_8gxhf")
-animation = &"Click mouse"
-frame_progress = 0.69154537
+animation = &"clica_mouse"
+frame = 5
+frame_progress = 1.0
 
 [node name="Colisão" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 0)
