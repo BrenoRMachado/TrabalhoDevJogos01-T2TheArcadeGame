@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dte5h4emqcidd"
-path="res://.godot/imported/Icons copy.svg-9d3082bb79d43c2dd68e8f86e85fb69c.ctex"
+path="res://.godot/imported/Icons copy.svg-c45659afbcab0b64a6f7c2f740def1e8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Game UI collection FREE version/Icons copy.svg"
-dest_files=["res://.godot/imported/Icons copy.svg-9d3082bb79d43c2dd68e8f86e85fb69c.ctex"]
+source_file="res://Assets/Aim/Icons copy.svg"
+dest_files=["res://.godot/imported/Icons copy.svg-c45659afbcab0b64a6f7c2f740def1e8.ctex"]
 
 [params]
 
