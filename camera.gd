@@ -8,11 +8,20 @@ enum EstadoCamera { INICIO, MOVIMENTO_DIREITA, FIM }
 var estado_atual = EstadoCamera.INICIO
 var tempo_no_estado: float = 0.0
 
-const TEMPO_PARADO: float = 2.0      
+const TEMPO_PARADO: float = 10.0      
 const TEMPO_MOVENDO: float = 20.0  
 const VELOCIDADE_MOVIMENTO: float = 150.0
 
+const CENA_SPAWN = preload("res://gerador_inimigos.tscn")
+var spawner_inimigo: Node = null # Referência para o Spawner
+
 func _ready() -> void:
+	var instancia_spawner = CENA_SPAWN.instantiate()
+	get_parent().call_deferred("add_child", instancia_spawner)
+	
+	instancia_spawner.inicia_timer(self)
+	spawner_inimigo = instancia_spawner
+	
 	#Oculta mouse
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN) 
 
@@ -45,9 +54,11 @@ func handle_lateral_movement(delta: float) -> void:
 			if tempo_no_estado >= TEMPO_MOVENDO:
 				estado_atual = EstadoCamera.FIM
 				tempo_no_estado = 0.0
+				
 		#Parado no final
 		EstadoCamera.FIM:
-			pass
+			spawner_inimigo.parar_geracao()
+			spawner_inimigo.deleta_todos_inimigos()
 
 func _input(event) -> void:
 	#Em evento, verifica se o click esquerdo do mouse foi acionado

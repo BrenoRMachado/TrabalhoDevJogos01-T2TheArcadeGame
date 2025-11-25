@@ -1,8 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://javd3dmqlp4y"]
+[gd_scene load_steps=22 format=3 uid="uid://8b3t3evuuvim"]
 
 [ext_resource type="Texture2D" uid="uid://xgoldi6ay684" path="res://Assets/enemy/damage.png" id="1_0b8xr"]
 [ext_resource type="Script" uid="uid://dm2r3tbml71v" path="res://inimigo.gd" id="1_g45jm"]
-[ext_resource type="PackedScene" uid="uid://b61exawculdlb" path="res://projetil_inimigo.tscn" id="2_enrbn"]
+[ext_resource type="PackedScene" path="res://projetil_inimigo.tscn" id="2_enrbn"]
 [ext_resource type="Texture2D" uid="uid://p81dwrcyjign" path="res://Assets/enemy/common.png" id="2_g45jm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_enrbn"]
@@ -149,7 +149,7 @@ animations = [{
 size = Vector2(26, 30)
 
 [node name="Inimigo" type="Area2D"]
-position = Vector2(551, 60)
+collision_layer = 3
 script = ExtResource("1_g45jm")
 cena_projetil = ExtResource("2_enrbn")
 

@@ -44,6 +44,7 @@ animations = [{
 size = Vector2(64, 64)
 
 [node name="Mira" type="Area2D"]
+collision_mask = 3
 script = ExtResource("1_6226f")
 
 [node name="Animação" type="AnimatedSprite2D" parent="."]
