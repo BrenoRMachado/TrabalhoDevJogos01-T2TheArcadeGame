@@ -12,6 +12,8 @@ var y_final: float = 577.0
 var velocidade_aproximacao: float = 15.0 
 var velocidade_lateral: float = 80.0
 
+@export var cena_projetil: PackedScene
+
 # --- Configurações de Escala ---
 var escala_inicial: float = 0.5
 var escala_final: float = 3.0
@@ -82,8 +84,22 @@ func _on_fim_caminhada_lado():
 
 func _on_atirar():
 	if estado_atual == Estado.MORTO: return
-	print("POW! Inimigo atirou.")
-	# GameManager.causar_dano(10)
+	
+	# Verifica se colocamos o tiro no Inspector pra não dar erro
+	if cena_projetil:
+		# 1. Cria a cópia do tiro
+		var novo_tiro = cena_projetil.instantiate()
+		
+		# 2. Define onde ele nasce (na mesma posição do inimigo)
+		novo_tiro.global_position = global_position
+		
+		# 3. Adiciona o tiro na cena principal (não como filho do inimigo, senão buga)
+		get_tree().current_scene.add_child(novo_tiro)
+		
+		# 4. Manda o tiro ir na direção do mouse atual
+		novo_tiro.definir_alvo(get_global_mouse_position())
+		
+		print("POW! Inimigo disparou.")
 
 func _on_clique_mouse(_viewport, event, _shape_idx):
 	if estado_atual == Estado.MORTO: return
