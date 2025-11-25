@@ -57,7 +57,6 @@ func _disparar_todos_canos():
 		
 		get_tree().current_scene.add_child(novo_tiro)
 		
-		var centro_da_tela = get_viewport_rect().size / 2
 		novo_tiro.definir_alvo(alvo_global)
 
 func _on_receber_clique(_viewport, event, _shape_idx):

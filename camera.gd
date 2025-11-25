@@ -2,14 +2,14 @@ extends Camera2D
 
 
 #Cria variáveis
-@onready var mira : Area2D = $Mira
+@onready var mira : Area2D = $"Mira"
 
 enum EstadoCamera { INICIO, MOVIMENTO_DIREITA, FIM }
 var estado_atual = EstadoCamera.INICIO
 var tempo_no_estado: float = 0.0
 
-const TEMPO_PARADO: float = 2.0      
-const TEMPO_MOVENDO: float = 2.0  
+const TEMPO_PARADO: float = 10.0      
+const TEMPO_MOVENDO: float = 10.0  
 const VELOCIDADE_MOVIMENTO: float = 150.0
 
 const CENA_SPAWN = preload("res://gerador_inimigos.tscn")

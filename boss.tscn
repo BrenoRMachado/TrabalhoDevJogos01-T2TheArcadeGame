@@ -29,10 +29,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_etj48"]
-size = Vector2(32, 94)
+size = Vector2(82, 235)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h3lj5"]
-size = Vector2(100, 30)
+size = Vector2(230, 83)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ef0k6"]
 atlas = ExtResource("7_kvofc")
@@ -99,6 +99,7 @@ animations = [{
 }]
 
 [node name="boss" type="Area2D"]
+collision_layer = 2
 script = ExtResource("1_o1i15")
 cena_projetil = ExtResource("2_kvofc")
 
@@ -108,9 +109,11 @@ sprite_frames = SubResource("SpriteFrames_kles1")
 frame_progress = 0.24308681
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 1.5)
 shape = SubResource("RectangleShape2D_etj48")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_h3lj5")
 
 [node name="TimerTiro" type="Timer" parent="."]
