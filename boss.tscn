@@ -1,7 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://dfa0oyhglp07p"]
+[gd_scene load_steps=20 format=3 uid="uid://ymxwl7iuhqsb"]
 
 [ext_resource type="Script" uid="uid://dop4voovhvlct" path="res://boss.gd" id="1_o1i15"]
-[ext_resource type="PackedScene" uid="uid://b61exawculdlb" path="res://projetil_inimigo.tscn" id="2_kvofc"]
+[ext_resource type="PackedScene" path="res://projetil_inimigo.tscn" id="2_kvofc"]
 [ext_resource type="Texture2D" uid="uid://catg41ml1yfox" path="res://Assets/Boss/blockbott1.png" id="2_we8h1"]
 [ext_resource type="Texture2D" uid="uid://dhaxf4i55yymf" path="res://Assets/Boss/blockbott2.png" id="3_kvofc"]
 [ext_resource type="Texture2D" uid="uid://bdw3ba5ju88hf" path="res://Assets/Boss/blockbott3.png" id="4_ef0k6"]
@@ -103,6 +103,7 @@ script = ExtResource("1_o1i15")
 cena_projetil = ExtResource("2_kvofc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2.32, 2.3200002)
 sprite_frames = SubResource("SpriteFrames_kles1")
 frame_progress = 0.24308681
 
