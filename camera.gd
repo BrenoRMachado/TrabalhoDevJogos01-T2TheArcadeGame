@@ -8,9 +8,9 @@ enum EstadoCamera { INICIO, MOVIMENTO_DIREITA, FIM }
 var estado_atual = EstadoCamera.INICIO
 var tempo_no_estado: float = 0.0
 
-const TEMPO_PARADO: float = 5.0      
-const TEMPO_MOVENDO: float = 5.0  
-const VELOCIDADE_MOVIMENTO: float = 100.0
+const TEMPO_PARADO: float = 2.0      
+const TEMPO_MOVENDO: float = 20.0  
+const VELOCIDADE_MOVIMENTO: float = 150.0
 
 func _ready() -> void:
 	#Oculta mouse

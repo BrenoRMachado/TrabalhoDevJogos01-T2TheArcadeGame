@@ -24,7 +24,7 @@ scale = Vector2(2.4, 3.5944448)
 texture = ExtResource("2_0nnsg")
 
 [node name="Layer3" type="Sprite2D" parent="."]
-modulate = Color(0.27326828, 0.16502607, 0.589033, 1)
+modulate = Color(0.19231012, 0.16017193, 0.7270889, 1)
 texture_filter = 1
 position = Vector2(5116, 324.00003)
 scale = Vector2(2.3999996, 3.6000001)

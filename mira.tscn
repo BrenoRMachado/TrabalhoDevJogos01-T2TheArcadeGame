@@ -5,11 +5,11 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6226f"]
 atlas = ExtResource("1_5bqif")
-region = Rect2(3096, 157, 463, 463)
+region = Rect2(2537, 171, 463, 463)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7n58y"]
 atlas = ExtResource("1_5bqif")
-region = Rect2(3626, 157, 463, 463)
+region = Rect2(3628, 157, 463, 463)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8gxhf"]
 animations = [{
@@ -47,13 +47,14 @@ size = Vector2(64, 64)
 script = ExtResource("1_6226f")
 
 [node name="Animação" type="AnimatedSprite2D" parent="."]
-position = Vector2(-1, 0)
+position = Vector2(-1.1920929e-07, 0)
 scale = Vector2(0.17278616, 0.17278615)
 sprite_frames = SubResource("SpriteFrames_8gxhf")
 animation = &"clica_mouse"
-frame = 5
+frame = 6
 frame_progress = 1.0
 
 [node name="Colisão" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_by6im")
