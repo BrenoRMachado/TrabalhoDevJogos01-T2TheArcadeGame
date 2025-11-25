@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://b61exawculdlb"]
+
+[ext_resource type="Script" uid="uid://cralb6ha00o74" path="res://projetil_inimigo.gd" id="1_5v10e"]
+[ext_resource type="Texture2D" uid="uid://d1cm6att6uesc" path="res://Assets/beam/beams.png" id="1_gqbvf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5v10e"]
+radius = 6.3245554
+
+[node name="ProjetilInimigo" type="Area2D"]
+script = ExtResource("1_5v10e")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_gqbvf")
+region_enabled = true
+region_rect = Rect2(35.570244, 114.16527, 19.458797, 21.350616)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5v10e")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
