@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" uid="uid://cl7ttec5frxrr" path="res://camera.gd" id="1_u5kg4"]
 
-[node name="Camera2D" type="Camera2D"]
+[node name="Camera" type="Camera2D"]
 script = ExtResource("1_u5kg4")

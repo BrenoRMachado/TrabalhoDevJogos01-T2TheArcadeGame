@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://xwclyw8oacrr"]
+
+[ext_resource type="Script" uid="uid://dy8warspdwh6e" path="res://hud.gd" id="1_37p78"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_37p78")
+
+[node name="Controle" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="BarraDeVida" type="ProgressBar" parent="Controle"]
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = -56.0
+offset_right = 364.0
+offset_bottom = -13.0
+grow_vertical = 0
+
+[node name="Pontos" type="Label" parent="Controle"]
+layout_direction = 2
+layout_mode = 1
+offset_left = 15.0
+offset_top = 14.0
+offset_right = 300.0
+offset_bottom = 66.0
