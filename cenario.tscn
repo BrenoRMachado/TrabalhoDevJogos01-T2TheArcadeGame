@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://bnpg3aty5eme4"]
+
+[ext_resource type="Texture2D" uid="uid://d3khdrbhrolol" path="res://Assets/Background/1.png" id="1_r0gk3"]
+[ext_resource type="Texture2D" uid="uid://di6btkkjaoqnk" path="res://Assets/Background/2.png" id="2_0nnsg"]
+[ext_resource type="Texture2D" uid="uid://dgh7g3jn4jf1s" path="res://Assets/Background/3.png" id="3_vkdxw"]
+[ext_resource type="Texture2D" uid="uid://bgyth7d8t8fsd" path="res://Assets/Background/4.png" id="4_4qp2d"]
+[ext_resource type="Texture2D" uid="uid://bsj53fg6eala6" path="res://Assets/Background/5.png" id="5_mqnm2"]
+
+[node name="Cenario" type="Parallax2D"]
+texture_filter = 1
+repeat_size = Vector2(1150, 0)
+repeat_times = 10
+
+[node name="Layer1" type="Sprite2D" parent="."]
+modulate = Color(0.1304686, 0.11772361, 0.44836122, 1)
+position = Vector2(5116.0005, 323.99997)
+scale = Vector2(2.4, 3.5999997)
+texture = ExtResource("1_r0gk3")
+
+[node name="Layer2" type="Sprite2D" parent="."]
+modulate = Color(0.14550656, 0.07465557, 0.30192596, 1)
+position = Vector2(5116.0005, 323.50003)
+scale = Vector2(2.4, 3.5944448)
+texture = ExtResource("2_0nnsg")
+
+[node name="Layer3" type="Sprite2D" parent="."]
+modulate = Color(0.19231012, 0.16017193, 0.7270889, 1)
+texture_filter = 1
+position = Vector2(5116, 324.00003)
+scale = Vector2(2.3999996, 3.6000001)
+texture = ExtResource("3_vkdxw")
+
+[node name="Layer4" type="Sprite2D" parent="."]
+modulate = Color(0.2657703, 0.28237528, 1, 1)
+texture_filter = 1
+position = Vector2(5116.001, 324)
+scale = Vector2(2.4, 3.6000001)
+texture = ExtResource("4_4qp2d")
+
+[node name="Layer5" type="Sprite2D" parent="."]
+modulate = Color(0.19156343, 0.21662053, 0.64457166, 1)
+texture_filter = 1
+position = Vector2(5116.001, 324)
+scale = Vector2(2.4, 3.6000001)
+texture = ExtResource("5_mqnm2")

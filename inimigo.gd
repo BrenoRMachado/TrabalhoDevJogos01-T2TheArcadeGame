@@ -98,8 +98,9 @@ func _on_atirar():
 		# 3. Adiciona o tiro na cena principal (não como filho do inimigo, senão buga)
 		get_tree().current_scene.add_child(novo_tiro)
 		
-		# 4. Manda o tiro ir na direção do mouse atual
-		novo_tiro.definir_alvo(get_global_mouse_position())
+		# 4. Manda o tiro ir na direção do centro da tela
+		var centro_da_tela = get_viewport_rect().size / 2
+		novo_tiro.definir_alvo(centro_da_tela)
 		
 		print("POW! Inimigo disparou.")
 

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8goytu42dtlw"]
+
+[ext_resource type="Script" uid="uid://cxed6xmas5qc4" path="res://tiro_jogador.gd" id="1_e0wvu"]
+[ext_resource type="Texture2D" uid="uid://d1cm6att6uesc" path="res://Assets/beam/beams.png" id="1_pwgh8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e0wvu"]
+
+[node name="TiroJogador" type="Area2D"]
+script = ExtResource("1_e0wvu")
+
+[node name="Animação" type="Sprite2D" parent="."]
+scale = Vector2(1.0588236, 1.0588237)
+texture = ExtResource("1_pwgh8")
+region_enabled = true
+region_rect = Rect2(201.29088, 1.2692833, 17.645126, 18.650246)
+
+[node name="Colisão" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_e0wvu")

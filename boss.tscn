@@ -1,7 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://dfa0oyhglp07p"]
+[gd_scene load_steps=20 format=3 uid="uid://ymxwl7iuhqsb"]
 
 [ext_resource type="Script" uid="uid://dop4voovhvlct" path="res://boss.gd" id="1_o1i15"]
-[ext_resource type="PackedScene" uid="uid://b61exawculdlb" path="res://projetil_inimigo.tscn" id="2_kvofc"]
+[ext_resource type="PackedScene" path="res://projetil_inimigo.tscn" id="2_kvofc"]
 [ext_resource type="Texture2D" uid="uid://catg41ml1yfox" path="res://Assets/Boss/blockbott1.png" id="2_we8h1"]
 [ext_resource type="Texture2D" uid="uid://dhaxf4i55yymf" path="res://Assets/Boss/blockbott2.png" id="3_kvofc"]
 [ext_resource type="Texture2D" uid="uid://bdw3ba5ju88hf" path="res://Assets/Boss/blockbott3.png" id="4_ef0k6"]
@@ -29,10 +29,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_etj48"]
-size = Vector2(32, 94)
+size = Vector2(82, 235)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h3lj5"]
-size = Vector2(100, 30)
+size = Vector2(230, 83)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ef0k6"]
 atlas = ExtResource("7_kvofc")
@@ -99,17 +99,21 @@ animations = [{
 }]
 
 [node name="boss" type="Area2D"]
+collision_layer = 2
 script = ExtResource("1_o1i15")
 cena_projetil = ExtResource("2_kvofc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2.32, 2.3200002)
 sprite_frames = SubResource("SpriteFrames_kles1")
 frame_progress = 0.24308681
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 1.5)
 shape = SubResource("RectangleShape2D_etj48")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_h3lj5")
 
 [node name="TimerTiro" type="Timer" parent="."]
