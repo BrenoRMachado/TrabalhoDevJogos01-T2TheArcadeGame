@@ -17,6 +17,8 @@ func _ready():
 func definir_alvo(posicao_alvo: Vector2):
 	# Calcula a direção: Do tiro -> Para a mira do mouse
 	direcao = (posicao_alvo - global_position).normalized()
+	# 2. A CORREÇÃO: Faz o tiro "olhar" para onde está indo
+	look_at(posicao_alvo)
 
 func _process(delta):
 	# 1. Efeito 3D: Cresce vindo pra tela
