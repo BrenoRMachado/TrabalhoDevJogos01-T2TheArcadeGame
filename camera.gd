@@ -5,7 +5,7 @@ extends Camera2D
 @onready var mira : Area2D = $"Mira"
 @export var vida_maxima: int = 100
 @export var cena_tiro_visual: PackedScene
-var vida_atual: int = 100
+var vida_atual: int = 20
 var barra_de_vida: ProgressBar = null
 
 enum EstadoCamera { INICIO, MOVIMENTO_DIREITA, FIM }
@@ -29,11 +29,12 @@ func _ready() -> void:
 	
 	var hud_node = get_parent().find_child("HUD")
 	if hud_node:
-		barra_de_vida = hud_node.find_child("BarraDeVida") 
-		if barra_de_vida:
-			barra_de_vida.max_value = vida_maxima
-			barra_de_vida.value = vida_atual
-			print("HUD de vida conectada.")
+		var controle_node = hud_node.find_child("Controle") 
+		if controle_node:
+			barra_de_vida = controle_node.find_child("BarraDeVida")
+			if barra_de_vida:
+				barra_de_vida.max_value = float(vida_maxima)
+				barra_de_vida.value = float(vida_atual)
 	#Oculta mouse
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN) 
 
@@ -136,7 +137,7 @@ func tomar_dano(quantidade: int):
 		game_over()
 		
 	if is_instance_valid(barra_de_vida):
-		barra_de_vida.value = vida_atual
+		barra_de_vida.value = float(vida_atual)
 
 func game_over():
 	print("GAME OVER! A vida do jogador chegou a zero.")

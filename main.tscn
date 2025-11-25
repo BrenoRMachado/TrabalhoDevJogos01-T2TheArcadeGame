@@ -10,11 +10,11 @@
 
 [node name="Cenario" parent="." instance=ExtResource("1_ig7tw")]
 
+[node name="HUD" parent="." instance=ExtResource("4_1bvp3")]
+
 [node name="Camera" parent="." instance=ExtResource("2_h2yge")]
 position = Vector2(576, 324)
 cena_tiro_visual = ExtResource("3_lquwl")
 
 [node name="Mira" parent="Camera" instance=ExtResource("3_1bvp3")]
 position = Vector2(-576, -324)
-
-[node name="HUD" parent="." instance=ExtResource("4_1bvp3")]
