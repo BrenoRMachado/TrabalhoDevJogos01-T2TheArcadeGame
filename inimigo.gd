@@ -12,6 +12,8 @@ var y_final: float = 577.0
 var velocidade_aproximacao: float = 15.0 
 var velocidade_lateral: float = 80.0
 
+@export var cena_projetil: PackedScene
+
 # --- Configurações de Escala ---
 var escala_inicial: float = 0.5
 var escala_final: float = 3.0
@@ -24,6 +26,7 @@ var direcao_lateral: int = 0
 @onready var timer_lado = $TimerLateral
 @onready var timer_tiro = $TimerTiro
 @onready var colisor = $CollisionShape2D
+@onready var boca_cano = $BocaDoCano
 
 func _ready():
 	position.y = y_inicial
@@ -65,6 +68,7 @@ func _trocar_para_andar_lado():
 	
 	anim.play("walking_side")
 	anim.flip_h = (direcao_lateral == -1)
+	boca_cano.position.x = abs(boca_cano.position.x) * direcao_lateral
 	timer_lado.start()
 
 func _comportamento_andar_lado(delta):
@@ -82,8 +86,22 @@ func _on_fim_caminhada_lado():
 
 func _on_atirar():
 	if estado_atual == Estado.MORTO: return
-	print("POW! Inimigo atirou.")
-	# GameManager.causar_dano(10)
+	
+	# Verifica se colocamos o tiro no Inspector pra não dar erro
+	if cena_projetil:
+		# 1. Cria a cópia do tiro
+		var novo_tiro = cena_projetil.instantiate()
+		
+		# 2. Define onde ele nasce (na mesma posição do inimigo)
+		novo_tiro.global_position = boca_cano.global_position
+		
+		# 3. Adiciona o tiro na cena principal (não como filho do inimigo, senão buga)
+		get_tree().current_scene.add_child(novo_tiro)
+		
+		# 4. Manda o tiro ir na direção do mouse atual
+		novo_tiro.definir_alvo(get_global_mouse_position())
+		
+		print("POW! Inimigo disparou.")
 
 func _on_clique_mouse(_viewport, event, _shape_idx):
 	if estado_atual == Estado.MORTO: return
