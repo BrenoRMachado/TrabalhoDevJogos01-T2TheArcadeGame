@@ -5,7 +5,7 @@ extends Camera2D
 @onready var mira : Area2D = $"Mira"
 @export var vida_maxima: int = 100
 @export var cena_tiro_visual: PackedScene
-var vida_atual: int = 20
+var vida_atual: int = 100
 var barra_de_vida: ProgressBar = null
 
 enum EstadoCamera { INICIO, MOVIMENTO_DIREITA, FIM }
