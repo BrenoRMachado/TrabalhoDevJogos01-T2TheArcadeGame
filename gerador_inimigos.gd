@@ -5,8 +5,8 @@ extends Node
 const CENA_INIMIGO = preload("res://inimigo.tscn")
 var camera: Camera2D = null
 
-const DISTANCIA_MINIMA_X: float = -1200.0 
-const DISTANCIA_MAXIMA_X: float = 1200.0 
+const DISTANCIA_MINIMA_X: float = -1000.0 
+const DISTANCIA_MAXIMA_X: float = 1000.0 
 const DISTÂNCIA_PARA_DELETAR: float = 700.0 
 const ALTURA_FIXA_Y: float = 498.0
 const INTERVALO_SPAWN: float = 1.5 

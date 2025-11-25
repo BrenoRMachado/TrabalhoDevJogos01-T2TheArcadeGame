@@ -3,6 +3,9 @@ extends Camera2D
 
 #Cria variáveis
 @onready var mira : Area2D = $"Mira"
+@export var vida_maxima: int = 100
+var vida_atual: int = 100
+var barra_de_vida: ProgressBar = null
 
 enum EstadoCamera { INICIO, MOVIMENTO_DIREITA, FIM }
 var estado_atual = EstadoCamera.INICIO
@@ -23,6 +26,13 @@ func _ready() -> void:
 	instancia_spawner.inicia_timer(self)
 	spawner_inimigo = instancia_spawner
 	
+	var hud_node = get_parent().find_child("HUD")
+	if hud_node:
+		barra_de_vida = hud_node.find_child("BarraDeVida") 
+		if barra_de_vida:
+			barra_de_vida.max_value = vida_maxima
+			barra_de_vida.value = vida_atual
+			print("HUD de vida conectada.")
 	#Oculta mouse
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN) 
 
@@ -81,3 +91,22 @@ func spawn_boss():
 	
 	boss_instancia.global_position = Vector2(spawn_x, spawn_y)
 	print("BOSS gerado em X:", spawn_x)
+
+func tomar_dano(quantidade: int):
+	# Não recebe dano se já estiver morto
+	if vida_atual <= 0:
+		return
+
+	vida_atual -= quantidade
+	print("Vida atual: ", vida_atual)
+	
+	# Verificar se a vida acabou (Game Over)
+	if vida_atual <= 0:
+		vida_atual = 0
+		game_over()
+		
+	if is_instance_valid(barra_de_vida):
+		barra_de_vida.value = vida_atual
+
+func game_over():
+	print("GAME OVER! A vida do jogador chegou a zero.")
