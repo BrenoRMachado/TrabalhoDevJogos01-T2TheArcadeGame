@@ -3,7 +3,8 @@ extends Area2D
 # Configurações do tiro
 var velocidade_crescimento: float = 2.5  # Velocidade que "vem pra frente"
 var velocidade_viagem: float = 400.0     # Velocidade lateral (ir até o alvo)
-var tamanho_explosao: float = 3.0        # Tamanho que ele acerta o player
+var tamanho_explosao: float = 3.0
+@export var dano_causado: int = 1        # Tamanho que ele acerta o player
 
 var direcao: Vector2 = Vector2.ZERO
 

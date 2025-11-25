@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://b61exawculdlb"]
+[gd_scene load_steps=4 format=3 uid="uid://37ydnkfwjr8f"]
 
 [ext_resource type="Script" uid="uid://cralb6ha00o74" path="res://projetil_inimigo.gd" id="1_5v10e"]
 [ext_resource type="Texture2D" uid="uid://d1cm6att6uesc" path="res://Assets/beam/beams.png" id="1_gqbvf"]
