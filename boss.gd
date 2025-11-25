@@ -3,13 +3,13 @@ extends Area2D
 # --- Configurações ---
 @export var vida: int = 50
 @export var velocidade: float = 100.0
-@export var limite_esquerda: float = 100.0 # Ajuste conforme a tela do seu amigo
-@export var limite_direita: float = 1000.0 # Ajuste conforme a tela
-@export var cena_projetil: PackedScene     # Arraste o projetil_inimigo.tscn aqui
+@export var offset_limite_horizontal: float = 400.0 
+@export var cena_projetil: PackedScene  
 
 # --- Variáveis de Controle ---
 var direcao_x: int = 1 # 1 = Direita, -1 = Esquerda
 var esta_morto: bool = false
+var camera: Camera2D = null
 
 # --- Pegando os nós ---
 @onready var timer_tiro = $TimerTiro
@@ -30,6 +30,9 @@ func _ready():
 func _process(delta):
 	if esta_morto: return
 	
+	var centro_camera_x = camera.global_position.x
+	var limite_esquerda = centro_camera_x - offset_limite_horizontal
+	var limite_direita = centro_camera_x + offset_limite_horizontal
 	# --- Movimento Ping-Pong (Lado a Lado) ---
 	position.x += (velocidade * direcao_x) * delta
 	
@@ -42,6 +45,7 @@ func _process(delta):
 func _disparar_todos_canos():
 	if esta_morto: return
 	if not cena_projetil: return
+	var alvo_global = camera.global_position
 	
 	print("BOSS: DISPARANDO 4 ARMAS!")
 	
@@ -53,8 +57,7 @@ func _disparar_todos_canos():
 		
 		get_tree().current_scene.add_child(novo_tiro)
 		
-		var centro_da_tela = get_viewport_rect().size / 2
-		novo_tiro.definir_alvo(centro_da_tela)
+		novo_tiro.definir_alvo(alvo_global)
 
 func _on_receber_clique(_viewport, event, _shape_idx):
 	if esta_morto: return

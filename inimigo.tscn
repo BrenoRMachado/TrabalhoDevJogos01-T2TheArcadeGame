@@ -149,7 +149,7 @@ animations = [{
 size = Vector2(26, 30)
 
 [node name="Inimigo" type="Area2D"]
-collision_layer = 3
+collision_layer = 2
 script = ExtResource("1_g45jm")
 cena_projetil = ExtResource("2_enrbn")
 

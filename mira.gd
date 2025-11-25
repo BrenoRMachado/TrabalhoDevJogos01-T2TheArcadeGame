@@ -8,7 +8,7 @@ const AnimationOnClick = "clica_mouse"
 
 
 func _ready() -> void:
-	set_process_priority(10)
+	z_index = 100
 
 #Atualiza posição da mira durante frames em uma velocidade definida
 func _physics_process(delta: float) -> void:
