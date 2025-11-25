@@ -4,6 +4,7 @@ extends Camera2D
 #Cria variáveis
 @onready var mira : Area2D = $"Mira"
 @export var vida_maxima: int = 100
+@export var cena_tiro_visual: PackedScene
 var vida_atual: int = 100
 var barra_de_vida: ProgressBar = null
 
@@ -74,11 +75,40 @@ func handle_lateral_movement(delta: float) -> void:
 			pass
 
 func _input(event) -> void:
-	#Em evento, verifica se o click esquerdo do mouse foi acionado
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		#Se sim, chama a função de animação da Mira
 		if event.pressed:
+			# 1. Animação da mira (que já existia)
 			mira.animacao_ao_clicar()
+			
+			# 2. A NOVA RAJADA DE TIROS VISUAIS
+			if cena_tiro_visual:
+				_criar_rajada_tiros()
+
+func _criar_rajada_tiros():
+	var mouse_pos = get_global_mouse_position()
+	var origem_tiro = global_position
+	origem_tiro.y += 300 
+	
+	# Calcula a distância exata entre a arma e o clique
+	var distancia_do_clique = origem_tiro.distance_to(mouse_pos)
+	
+	var direcao = (mouse_pos - origem_tiro).normalized()
+	
+	for i in range(6):
+		if not cena_tiro_visual: break
+		
+		var novo_tiro = cena_tiro_visual.instantiate()
+		get_parent().add_child(novo_tiro)
+		
+		novo_tiro.global_position = origem_tiro
+		novo_tiro.direcao = direcao
+		novo_tiro.rotation = direcao.angle()
+		
+		# AQUI ESTÁ A MÁGICA:
+		# Passamos a distância para a bala saber quando parar
+		novo_tiro.distancia_maxima = distancia_do_clique
+		
+		await get_tree().create_timer(0.05).timeout
 
 func spawn_boss():
 	var boss_instancia = CENA_BOSS.instantiate()

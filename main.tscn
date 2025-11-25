@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bn7tgfuf5i7gn"]
+[gd_scene load_steps=6 format=3 uid="uid://bn7tgfuf5i7gn"]
 
 [ext_resource type="PackedScene" uid="uid://bnpg3aty5eme4" path="res://cenario.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://suq0m0rgwv3w" path="res://camera.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://ph4ffuidt15u" path="res://mira.tscn" id="3_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://dxah7uddrnmsq" path="res://tiro_visual.tscn" id="3_lquwl"]
 [ext_resource type="PackedScene" uid="uid://xwclyw8oacrr" path="res://hud.tscn" id="4_1bvp3"]
 
 [node name="Level" type="Node"]
@@ -11,6 +12,7 @@
 
 [node name="Camera" parent="." instance=ExtResource("2_h2yge")]
 position = Vector2(576, 324)
+cena_tiro_visual = ExtResource("3_lquwl")
 
 [node name="Mira" parent="Camera" instance=ExtResource("3_1bvp3")]
 position = Vector2(-576, -324)
