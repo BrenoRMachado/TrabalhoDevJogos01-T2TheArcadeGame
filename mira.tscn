@@ -44,6 +44,7 @@ animations = [{
 size = Vector2(64, 64)
 
 [node name="Mira" type="Area2D"]
+collision_mask = 3
 script = ExtResource("1_6226f")
 
 [node name="Animação" type="AnimatedSprite2D" parent="."]
@@ -55,6 +56,5 @@ frame = 6
 frame_progress = 1.0
 
 [node name="Colisão" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_by6im")
