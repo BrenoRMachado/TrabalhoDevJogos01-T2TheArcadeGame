@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Trabalho Jogos"
-run/main_scene="uid://bn7tgfuf5i7gn"
+run/main_scene="uid://de1ddxh3sqcl3"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 

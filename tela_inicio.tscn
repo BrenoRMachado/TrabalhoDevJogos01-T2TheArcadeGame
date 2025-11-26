@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://ci8fcq7ux4jkl"]
+[gd_scene load_steps=3 format=3 uid="uid://de1ddxh3sqcl3"]
 
-[ext_resource type="Script" uid="uid://dna7ahptqrwdg" path="res://tela_inicio.gd" id="1_m2gpi"]
+[ext_resource type="Script" path="res://tela_inicio.gd" id="1_m2gpi"]
 [ext_resource type="PackedScene" uid="uid://bnpg3aty5eme4" path="res://cenario.tscn" id="2_03qvr"]
 
 [node name="TelaInicio" type="Control"]
