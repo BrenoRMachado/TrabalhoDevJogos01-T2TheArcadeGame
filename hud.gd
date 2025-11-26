@@ -12,9 +12,6 @@ func _ready() -> void:
 	barra_de_vida.value = vida_atual
 	pontuacao.text = "Pontos: %d" % pontuacao_atual
 
-func _process(delta: float) -> void:
-	pass
-
 #Atualização da vida
 func atualiza_vida(dano : int) -> void:
 	vida_atual -= dano

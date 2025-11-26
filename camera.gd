@@ -13,18 +13,20 @@ enum EstadoCamera { INICIO, MOVIMENTO_DIREITA, FIM }
 var estado_atual = EstadoCamera.INICIO
 var tempo_no_estado: float = 0.0
 
-const TEMPO_PARADO: float = 10.0      
-const TEMPO_MOVENDO: float = 10.0  
+const TEMPO_PARADO: float = 15.0      
+const TEMPO_MOVENDO: float = 30.0  
 const VELOCIDADE_MOVIMENTO: float = 150.0
 
 const CENA_SPAWN = preload("res://gerador_inimigos.tscn")
 const CENA_BOSS = preload("res://boss.tscn")
-var spawner_inimigo: Node = null # Referência para o Spawner
+var spawner_inimigo: Node = null
 
 func _ready() -> void:
+	#Instância spawner inimigo
 	var instancia_spawner = CENA_SPAWN.instantiate()
 	get_parent().call_deferred("add_child", instancia_spawner)
 	
+	#
 	instancia_spawner.inicia_timer(self)
 	spawner_inimigo = instancia_spawner
 	
@@ -77,15 +79,15 @@ func handle_lateral_movement(delta: float) -> void:
 			pass
 
 func _input(event) -> void:
+	#Permite jogador atirar vários tiros
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
-			# 1. Animação da mira (que já existia)
 			mira.animacao_ao_clicar()
 			
-			# 2. A NOVA RAJADA DE TIROS VISUAIS
 			if cena_tiro_visual:
 				_criar_rajada_tiros()
 
+#Função para rajada de tiros
 func _criar_rajada_tiros():
 	var mouse_pos = get_global_mouse_position()
 	var origem_tiro = global_position
@@ -106,7 +108,6 @@ func _criar_rajada_tiros():
 		novo_tiro.direcao = direcao
 		novo_tiro.rotation = direcao.angle()
 		
-		# AQUI ESTÁ A MÁGICA:
 		# Passamos a distância para a bala saber quando parar
 		novo_tiro.distancia_maxima = distancia_do_clique
 		
@@ -115,14 +116,15 @@ func _criar_rajada_tiros():
 func spawn_boss():
 	var boss_instancia = CENA_BOSS.instantiate()
 	get_parent().call_deferred("add_child", boss_instancia)
+	
 	# Adiciona o Boss na cena principal
 	boss_instancia.camera = self
-	# Posiciona o Boss no centro da visão da Câmera (ou onde ele deve começar)
+	
+	# Posiciona o boss no centro da visão da câmera
 	var spawn_x: float = global_position.x 
-	var spawn_y: float = global_position.y - 200 # Um pouco acima do centro
+	var spawn_y: float = global_position.y - 200
 	
 	boss_instancia.global_position = Vector2(spawn_x, spawn_y)
-	print("BOSS gerado em X:", spawn_x)
 
 func tomar_dano(quantidade: int):
 	# Não recebe dano se já estiver morto
@@ -130,9 +132,8 @@ func tomar_dano(quantidade: int):
 		return
 
 	vida_atual -= quantidade
-	print("Vida atual: ", vida_atual)
 	
-	# Verificar se a vida acabou (Game Over)
+	# Verificar se a vida acabou
 	if vida_atual <= 0:
 		vida_atual = 0
 		game_over()
@@ -140,14 +141,18 @@ func tomar_dano(quantidade: int):
 	if is_instance_valid(barra_de_vida):
 		barra_de_vida.value = float(vida_atual)
 
+#Função para fim de jogo
 func game_over():
 	if is_instance_valid(spawner_inimigo):
 		spawner_inimigo.parar_geracao()
 		spawner_inimigo.deleta_todos_inimigos()
 	
+	#Pausa a tela
 	get_tree().paused = true
 	
+	#Chama tela de game over
 	var tela_game_over = CENA_GAME_OVER.instantiate()
 	get_parent().add_child(tela_game_over)
 	
+	#Torna mouse visível
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE) 

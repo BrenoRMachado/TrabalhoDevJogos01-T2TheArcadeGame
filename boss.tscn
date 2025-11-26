@@ -139,3 +139,5 @@ position = Vector2(0, -285)
 scale = Vector2(7.734375, 7.7343745)
 sprite_frames = SubResource("SpriteFrames_lc4na")
 frame_progress = 0.590878
+
+[node name="TimerVitoria" type="Timer" parent="."]

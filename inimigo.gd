@@ -1,27 +1,22 @@
 extends Area2D
 
-# --- Estados ---
+#Cria variáveis
 enum Estado { APROXIMANDO, ANDANDO_LADO, ATACANDO, MORTO }
 var estado_atual = Estado.APROXIMANDO
 
-# --- Configurações de Movimento ---
 var y_inicial: float = 498.0
 var y_final: float = 577.0
 
-# Velocidade de aproximação (Ajuste aqui se quiser mais rápido ou devagar)
 var velocidade_aproximacao: float = 15.0 
 var velocidade_lateral: float = 80.0
 
 @export var cena_projetil: PackedScene
 
-# --- Configurações de Escala ---
 var escala_inicial: float = 0.5
 var escala_final: float = 3.0
 
-# --- Variáveis de Controle ---
 var direcao_lateral: int = 0 
 
-# Nós
 @onready var anim = $AnimatedSprite2D
 @onready var timer_lado = $TimerLateral
 @onready var timer_tiro = $TimerTiro
@@ -29,15 +24,18 @@ var direcao_lateral: int = 0
 @onready var boca_cano = $BocaDoCano
 
 func _ready():
+	#Inicia escala e movimentação
 	position.y = y_inicial
 	scale = Vector2(escala_inicial, escala_inicial)
 	anim.play("walking_front")
 	
+	#Timers do inimigo
 	self.input_event.connect(_on_clique_mouse)
 	timer_lado.timeout.connect(_on_fim_caminhada_lado)
 	timer_tiro.timeout.connect(_on_atirar)
 
 func _process(delta):
+	#Estados possíveis para inimigo
 	match estado_atual:
 		Estado.APROXIMANDO:
 			_comportamento_aproximar(delta)
@@ -48,6 +46,7 @@ func _process(delta):
 		Estado.MORTO:
 			pass
 
+#Função para aproximação de tela
 func _comportamento_aproximar(delta):
 	position.y += velocidade_aproximacao * delta
 	
@@ -61,6 +60,7 @@ func _comportamento_aproximar(delta):
 		position.y = y_final
 		_trocar_para_andar_lado()
 
+#Função para andar para o lado
 func _trocar_para_andar_lado():
 	estado_atual = Estado.ANDANDO_LADO
 	var opcoes = [-1, 1]
@@ -71,9 +71,11 @@ func _trocar_para_andar_lado():
 	boca_cano.position.x = abs(boca_cano.position.x) * direcao_lateral
 	timer_lado.start()
 
+#Movimento lateral
 func _comportamento_andar_lado(delta):
 	position.x += (velocidade_lateral * direcao_lateral) * delta
 
+#Função para inimigo parado
 func _on_fim_caminhada_lado():
 	if estado_atual == Estado.MORTO: return
 	
@@ -84,41 +86,39 @@ func _on_fim_caminhada_lado():
 	_on_atirar()
 	timer_tiro.start()
 
+#Função para atirar
 func _on_atirar():
+	#Quando morto não atira
 	if estado_atual == Estado.MORTO: return
 	
+	#Gera projétil inimigo
 	if cena_projetil:
 		var novo_tiro = cena_projetil.instantiate()
 		novo_tiro.global_position = boca_cano.global_position
 		get_tree().current_scene.add_child(novo_tiro)
 
+#Reação inimigo ao clique
 func _on_clique_mouse(_viewport, event, _shape_idx):
 	if estado_atual == Estado.MORTO: return
 	
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		morrer() 
 
-# --- CORREÇÃO AQUI ---
+#Função de morte
 func morrer():
 	estado_atual = Estado.MORTO
-	colisor.set_deferred("disabled", true) # Desliga o colisor
+	colisor.set_deferred("disabled", true)
 	timer_tiro.stop()
 	timer_lado.stop()
 	
-	# --- CÓDIGO NOVO: DAR PONTOS ---
-	# 1. Tenta achar o HUD na cena (procurando nos grupos ou pelo nome)
-	# O jeito mais seguro usando sua estrutura atual (Level -> HUD):
 	var hud = get_tree().root.find_child("HUD", true, false)
 	
-	# 2. Se achou, manda somar 100 pontos
+	#Pontuação
 	if hud and hud.has_method("atualiza_pontuacao"):
 		hud.atualiza_pontuacao(100)
-	# -------------------------------
 	
+	#Morte do inimigo
 	anim.play("death")
-	
-	# A MÁGICA: Espera o sinal de que a animação terminou de verdade
 	await anim.animation_finished
 	
-	# Só depois de terminar ele deleta
 	queue_free()

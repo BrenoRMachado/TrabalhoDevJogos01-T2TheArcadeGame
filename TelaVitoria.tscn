@@ -1,139 +1,45 @@
-[gd_scene load_steps=20 format=3 uid="uid://b2oamt4l6ehd6"]
+[gd_scene load_steps=3 format=3 uid="uid://b2oamt4l6ehd6"]
 
-[ext_resource type="Script" uid="uid://dop4voovhvlct" path="res://boss.gd" id="1_agtrm"]
-[ext_resource type="PackedScene" uid="uid://37ydnkfwjr8f" path="res://projetil_inimigo.tscn" id="2_vsddf"]
-[ext_resource type="Texture2D" uid="uid://catg41ml1yfox" path="res://Assets/Boss/blockbott1.png" id="3_r7sjr"]
-[ext_resource type="Texture2D" uid="uid://dhaxf4i55yymf" path="res://Assets/Boss/blockbott2.png" id="4_t3sfy"]
-[ext_resource type="Texture2D" uid="uid://bdw3ba5ju88hf" path="res://Assets/Boss/blockbott3.png" id="5_gy44s"]
-[ext_resource type="Texture2D" uid="uid://cmgghuy7ix2xt" path="res://Assets/Boss/blockbott4.png" id="6_ok4io"]
-[ext_resource type="Texture2D" uid="uid://dmk8o8h47adug" path="res://Assets/explosao/spritsheet.png" id="7_gipjd"]
+[ext_resource type="Script" uid="uid://cdg8iq7s8vbps" path="res://tela_vitoria.gd" id="1_d7gbv"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_kles1"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_r7sjr")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_t3sfy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_gy44s")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_ok4io")
-}],
-"loop": true,
-"name": &"default",
-"speed": 6.0
-}]
+[sub_resource type="LabelSettings" id="LabelSettings_o4t8j"]
+font_size = 64
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_etj48"]
-size = Vector2(82, 235)
+[node name="TelaVitoria" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_d7gbv")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h3lj5"]
-size = Vector2(230, 83)
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5882353)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ef0k6"]
-atlas = ExtResource("7_gipjd")
-region = Rect2(0, 0, 128, 128)
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -23.5
+offset_right = 20.0
+offset_bottom = 23.5
+grow_horizontal = 2
+grow_vertical = 2
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ry61v"]
-atlas = ExtResource("7_gipjd")
-region = Rect2(128, 0, 128, 128)
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "VITÓRIA!"
+label_settings = SubResource("LabelSettings_o4t8j")
+horizontal_alignment = 1
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kles1"]
-atlas = ExtResource("7_gipjd")
-region = Rect2(256, 0, 128, 128)
+[node name="BotaoReiniciar" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Jogar Novamente"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_etj48"]
-atlas = ExtResource("7_gipjd")
-region = Rect2(384, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_h3lj5"]
-atlas = ExtResource("7_gipjd")
-region = Rect2(512, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1s1j2"]
-atlas = ExtResource("7_gipjd")
-region = Rect2(640, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_km2bi"]
-atlas = ExtResource("7_gipjd")
-region = Rect2(768, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u0duv"]
-atlas = ExtResource("7_gipjd")
-region = Rect2(896, 0, 128, 128)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_lc4na"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ef0k6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ry61v")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kles1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_etj48")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_h3lj5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1s1j2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_km2bi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_u0duv")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[node name="boss" type="Area2D"]
-collision_layer = 2
-script = ExtResource("1_agtrm")
-cena_projetil = ExtResource("2_vsddf")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(2.32, 2.3200002)
-sprite_frames = SubResource("SpriteFrames_kles1")
-frame_progress = 0.24308681
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 1.5)
-shape = SubResource("RectangleShape2D_etj48")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
-shape = SubResource("RectangleShape2D_h3lj5")
-
-[node name="TimerTiro" type="Timer" parent="."]
-
-[node name="Armas" type="Node2D" parent="."]
-
-[node name="Marker2D" type="Marker2D" parent="Armas"]
-position = Vector2(-29, 0)
-
-[node name="Marker2D2" type="Marker2D" parent="Armas"]
-position = Vector2(30, 0)
-
-[node name="Marker2D3" type="Marker2D" parent="Armas"]
-position = Vector2(0, 32)
-
-[node name="Marker2D4" type="Marker2D" parent="Armas"]
-position = Vector2(0, -30)
-
-[node name="ExplosaoVisual" type="AnimatedSprite2D" parent="."]
-visible = false
-position = Vector2(0, -35)
-sprite_frames = SubResource("SpriteFrames_lc4na")
-frame_progress = 0.590878
+[node name="BotaoSair" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Sair"
