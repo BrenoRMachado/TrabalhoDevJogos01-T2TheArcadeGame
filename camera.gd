@@ -5,7 +5,8 @@ extends Camera2D
 @onready var mira : Area2D = $"Mira"
 @export var vida_maxima: int = 100
 @export var cena_tiro_visual: PackedScene
-var vida_atual: int = 20
+const CENA_GAME_OVER = preload("res://tela_game_over.tscn")
+var vida_atual: int = 100
 var barra_de_vida: ProgressBar = null
 
 enum EstadoCamera { INICIO, MOVIMENTO_DIREITA, FIM }
@@ -140,4 +141,13 @@ func tomar_dano(quantidade: int):
 		barra_de_vida.value = float(vida_atual)
 
 func game_over():
-	print("GAME OVER! A vida do jogador chegou a zero.")
+	if is_instance_valid(spawner_inimigo):
+		spawner_inimigo.parar_geracao()
+		spawner_inimigo.deleta_todos_inimigos()
+	
+	get_tree().paused = true
+	
+	var tela_game_over = CENA_GAME_OVER.instantiate()
+	get_parent().add_child(tela_game_over)
+	
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE) 
