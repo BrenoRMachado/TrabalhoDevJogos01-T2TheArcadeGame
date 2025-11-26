@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 func _ready():
 	# Conecta os botões via código para ser mais rápido
