@@ -36,7 +36,7 @@ func acertar_player():
 	
 	var camera_node = get_viewport().get_camera_2d()
 	if camera_node and camera_node.has_method("tomar_dano"):
-		camera_node.tomar_dano(1)
+		camera_node.tomar_dano(2)
 
 	queue_free()
 
