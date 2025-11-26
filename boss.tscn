@@ -134,7 +134,8 @@ position = Vector2(0, -30)
 
 [node name="ExplosaoVisual" type="AnimatedSprite2D" parent="."]
 visible = false
-position = Vector2(0, -98)
-scale = Vector2(2.59375, 2.59375)
+texture_filter = 1
+position = Vector2(0, -285)
+scale = Vector2(7.734375, 7.7343745)
 sprite_frames = SubResource("SpriteFrames_lc4na")
 frame_progress = 0.590878
