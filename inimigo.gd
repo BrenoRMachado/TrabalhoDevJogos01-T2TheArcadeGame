@@ -117,6 +117,16 @@ func morrer():
 	timer_tiro.stop()
 	timer_lado.stop()
 	
+	# --- CÓDIGO NOVO: DAR PONTOS ---
+	# 1. Tenta achar o HUD na cena (procurando nos grupos ou pelo nome)
+	# O jeito mais seguro usando sua estrutura atual (Level -> HUD):
+	var hud = get_tree().root.find_child("HUD", true, false)
+	
+	# 2. Se achou, manda somar 100 pontos
+	if hud and hud.has_method("atualiza_pontuacao"):
+		hud.atualiza_pontuacao(100)
+	# -------------------------------
+	
 	anim.play("death")
 	
 	# A MÁGICA: Espera o sinal de que a animação terminou de verdade
