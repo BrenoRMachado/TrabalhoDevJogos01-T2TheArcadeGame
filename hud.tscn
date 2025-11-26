@@ -1,28 +1,40 @@
-[gd_scene load_steps=2 format=3 uid="uid://xwclyw8oacrr"]
+[gd_scene load_steps=4 format=3 uid="uid://xwclyw8oacrr"]
 
 [ext_resource type="Script" uid="uid://dy8warspdwh6e" path="res://hud.gd" id="1_37p78"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_37p78"]
+bg_color = Color(0.3854925, 0.3854925, 0.38549235, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_64ctp"]
+bg_color = Color(0.9764706, 0, 0, 0.5882353)
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_37p78")
 
 [node name="Controle" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 1152.0
-offset_bottom = 648.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 
 [node name="BarraDeVida" type="ProgressBar" parent="Controle"]
 layout_direction = 2
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 11.0
-offset_top = -56.0
-offset_right = 364.0
-offset_bottom = -13.0
+anchors_preset = -1
+anchor_left = 0.010000001
+anchor_top = 0.91400003
+anchor_right = 0.316
+anchor_bottom = 0.98
+offset_left = -0.52000046
+offset_top = -0.2720337
+offset_right = -0.03201294
+offset_bottom = -0.040039063
 grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_37p78")
+theme_override_styles/fill = SubResource("StyleBoxFlat_64ctp")
 
 [node name="Pontos" type="Label" parent="Controle"]
 layout_direction = 2
