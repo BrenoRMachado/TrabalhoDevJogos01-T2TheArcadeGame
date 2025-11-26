@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://ci8fcq7ux4jkl"]
+
+[ext_resource type="Script" uid="uid://dna7ahptqrwdg" path="res://tela_inicio.gd" id="1_m2gpi"]
+[ext_resource type="PackedScene" uid="uid://bnpg3aty5eme4" path="res://cenario.tscn" id="2_03qvr"]
+
+[node name="TelaInicio" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+script = ExtResource("1_m2gpi")
+
+[node name="Cenario" parent="." instance=ExtResource("2_03qvr")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+
+[node name="OverlayEscuro" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.531)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+alignment = 1
+
+[node name="Titulo" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 45
+text = "Protótipo T2: The arcade game"
+horizontal_alignment = 1
+
+[node name="BotaoJogar" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "JOGAR"
+
+[node name="BotaoSair" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "SAIR"
