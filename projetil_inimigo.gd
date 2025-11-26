@@ -14,6 +14,18 @@ func _ready():
 	
 	# Se sair da tela, se destrói sozinho
 	$VisibleOnScreenNotifier2D.screen_exited.connect(queue_free)
+	
+	call_deferred("mirar_no_centro")
+
+func mirar_no_centro():
+	var viewport = get_viewport()
+	var camera = viewport.get_camera_2d()
+	if camera:
+		var centro_da_tela = viewport.get_visible_rect().size / 2
+		var camera_transform = camera.get_canvas_transform()
+		var alvo_global: Vector2
+		alvo_global = camera_transform.inverse() * centro_da_tela
+		definir_alvo(alvo_global)
 
 func definir_alvo(posicao_alvo: Vector2):
 	# Calcula a direção: Do tiro -> Para a mira do mouse

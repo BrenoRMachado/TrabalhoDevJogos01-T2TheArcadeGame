@@ -87,22 +87,10 @@ func _on_fim_caminhada_lado():
 func _on_atirar():
 	if estado_atual == Estado.MORTO: return
 	
-	# Verifica se colocamos o tiro no Inspector pra não dar erro
 	if cena_projetil:
-		# 1. Cria a cópia do tiro
 		var novo_tiro = cena_projetil.instantiate()
-		
-		# 2. Define onde ele nasce (na mesma posição do inimigo)
 		novo_tiro.global_position = boca_cano.global_position
-		
-		# 3. Adiciona o tiro na cena principal (não como filho do inimigo, senão buga)
 		get_tree().current_scene.add_child(novo_tiro)
-		
-		# 4. Manda o tiro ir na direção do centro da tela
-		var centro_da_tela = get_viewport_rect().size / 2
-		novo_tiro.definir_alvo(centro_da_tela)
-		
-		print("POW! Inimigo disparou.")
 
 func _on_clique_mouse(_viewport, event, _shape_idx):
 	if estado_atual == Estado.MORTO: return
