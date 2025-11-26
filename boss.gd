@@ -67,6 +67,12 @@ func _on_receber_clique(_viewport, event, _shape_idx):
 
 func tomar_dano():
 	vida -= 1
+	# --- CÓDIGO NOVO: PONTOS POR TIRO ---
+	# Ganha 50 pontos toda vez que acerta o Boss
+	var hud = get_tree().root.find_child("HUD", true, false)
+	if hud and hud.has_method("atualiza_pontuacao"):
+		hud.atualiza_pontuacao(50) 
+	# ------------------------------------
 	# Piscar vermelho
 	modulate = Color(10, 0, 0)
 	await get_tree().create_timer(0.05).timeout
@@ -76,9 +82,20 @@ func tomar_dano():
 		morrer()
 
 func morrer():
+	# --- TRAVA DE SEGURANÇA ---
+	# Se já estiver morto, cancela e não faz nada.
+	if esta_morto:
+		return
+	# --------------------------
 	esta_morto = true
 	timer_tiro.stop()
 	$CollisionShape2D.set_deferred("disabled", true)
+	
+	# --- CÓDIGO NOVO: DAR PONTOS DO BOSS ---
+	var hud = get_tree().root.find_child("HUD", true, false)
+	if hud and hud.has_method("atualiza_pontuacao"):
+		hud.atualiza_pontuacao(5000) # Boss vale 5.000!
+	# ---------------------------------------
 	
 	# 1. Faz a Explosão aparecer e tocar
 	anim_explosao.visible = true
